@@ -1,0 +1,215 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* Brand palette: change these to re-theme the whole site.
+     Light mode uses deeper stops so gradient text keeps enough contrast on white. */
+  :root {
+    --g1: #7c3aed; /* violet-600 */
+    --g2: #c026d3; /* fuchsia-600 */
+    --g3: #0891b2; /* cyan-600 */
+    --brand-gradient: linear-gradient(90deg, var(--g1), var(--g2), var(--g3), var(--g2), var(--g1));
+    /* Buttons carry white text, so every stop here stays dark enough for 4.5:1 contrast. */
+    --button-gradient: linear-gradient(90deg, #7c3aed, #c026d3, #4f46e5, #7c3aed);
+    --card-bg: rgb(255 255 255);
+  }
+
+  .dark {
+    --g1: #a78bfa; /* violet-400 */
+    --g2: #e879f9; /* fuchsia-400 */
+    --g3: #22d3ee; /* cyan-400 */
+    --card-bg: rgb(15 23 42); /* slate-900 */
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-white font-sans text-slate-700 antialiased dark:bg-slate-950 dark:text-slate-300;
+  }
+
+  ::selection {
+    @apply bg-fuchsia-500/30;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    ::before,
+    ::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer components {
+  /* Animated gradient text. Use on large headings only (contrast is tuned for large text). */
+  .text-gradient {
+    @apply animate-gradient bg-brand bg-clip-text text-transparent;
+    background-size: 300% 100%;
+  }
+
+  .btn-gradient {
+    @apply animate-gradient text-white shadow-lg shadow-fuchsia-500/25 hover:shadow-xl hover:shadow-fuchsia-500/40;
+    background-image: var(--button-gradient);
+    background-size: 300% 100%;
+  }
+
+  /* Card with a moving gradient border (featured items). */
+  .gradient-border {
+    @apply animate-gradient;
+    border: 1px solid transparent;
+    background:
+      linear-gradient(var(--card-bg), var(--card-bg)) padding-box,
+      var(--brand-gradient) border-box;
+    background-size:
+      100% 100%,
+      300% 100%;
+  }
+
+  /* Rotating conic border + blurred halo, matching the glow around the profile photo.
+     Both share --glow-angle so the light travels around the card in step. */
+  .glow-border,
+  .glow-halo {
+    animation: glow-spin 6s linear infinite;
+  }
+
+  .glow-border {
+    border: 1px solid transparent;
+    background:
+      linear-gradient(var(--card-bg), var(--card-bg)) padding-box,
+      conic-gradient(from var(--glow-angle), var(--g1), var(--g2), var(--g3), var(--g1)) border-box;
+  }
+
+  .glow-halo {
+    background: conic-gradient(from var(--glow-angle), var(--g1), var(--g2), var(--g3), var(--g1));
+    filter: blur(14px);
+  }
+
+  /* ---- Custom glass cursor (see components/layout/GlassCursor.jsx) ---- */
+  html.has-custom-cursor,
+  html.has-custom-cursor * {
+    cursor: none !important;
+  }
+
+  .cursor-orb {
+    position: relative;
+    width: 38px;
+    height: 38px;
+    border-radius: 9999px;
+    overflow: hidden;
+    border: 1px solid rgb(255 255 255 / 0.55);
+    /* glass body with a specular highlight in the upper-left */
+    background: radial-gradient(
+      circle at 32% 26%,
+      rgb(255 255 255 / 0.95) 0 5%,
+      rgb(255 255 255 / 0.4) 13%,
+      rgb(255 255 255 / 0.08) 42%,
+      rgb(139 92 246 / 0.18) 70%,
+      rgb(109 40 217 / 0.4) 100%
+    );
+    /* inner shading gives it volume; the outer shadow lifts it off the page */
+    box-shadow:
+      inset -6px -8px 14px rgb(76 29 149 / 0.35),
+      inset 4px 5px 10px rgb(255 255 255 / 0.55),
+      0 10px 24px rgb(76 29 149 / 0.28);
+    backdrop-filter: blur(2px) saturate(170%);
+    transition:
+      transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1),
+      box-shadow 0.25s ease,
+      border-color 0.25s ease;
+  }
+
+  /* slowly turning iridescent sheen */
+  .cursor-orb::before {
+    content: '';
+    position: absolute;
+    inset: -30%;
+    background: conic-gradient(
+      from 0deg,
+      transparent,
+      rgb(232 121 249 / 0.35),
+      transparent,
+      rgb(34 211 238 / 0.35),
+      transparent
+    );
+    mix-blend-mode: overlay;
+    animation: cursor-sheen 4s linear infinite;
+  }
+
+  @keyframes cursor-sheen {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  /* hover color layer: a fuchsia → cyan rim, faded in over links and buttons */
+  .cursor-orb::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: radial-gradient(
+      circle at 50% 50%,
+      transparent 52%,
+      rgb(232 121 249 / 0.35) 72%,
+      rgb(34 211 238 / 0.55) 100%
+    );
+    opacity: 0;
+    transition: opacity 0.25s ease;
+  }
+
+  /* Over links/buttons the orb becomes a clear lens (no blur, no fill) so the
+     label underneath stays readable, with a colored rim and glow. */
+  .cursor-orb[data-hover='true'] {
+    transform: scale(1.7);
+    border-color: rgb(255 255 255 / 0.9);
+    background: radial-gradient(
+      circle at 30% 24%,
+      rgb(255 255 255 / 0.75) 0 4%,
+      rgb(255 255 255 / 0) 11%
+    );
+    backdrop-filter: saturate(180%);
+    box-shadow:
+      inset -3px -4px 8px rgb(14 116 144 / 0.25),
+      inset 2px 3px 6px rgb(255 255 255 / 0.5),
+      0 0 22px rgb(217 70 239 / 0.6),
+      0 0 4px rgb(34 211 238 / 0.6);
+  }
+
+  .cursor-orb[data-hover='true']::before {
+    opacity: 0.5;
+  }
+
+  .cursor-orb[data-hover='true']::after {
+    opacity: 1;
+  }
+
+  .cursor-orb[data-pressed='true'] {
+    transform: scale(0.8);
+  }
+
+  .cursor-orb[data-hover='true'][data-pressed='true'] {
+    transform: scale(1.4);
+  }
+}
+
+/* Registered so the conic gradients behind .glow-border / .glow-halo can rotate smoothly. */
+@property --glow-angle {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 0deg;
+}
+
+@keyframes glow-spin {
+  to {
+    --glow-angle: 360deg;
+  }
+}

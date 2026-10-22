@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fahrin Kabir Sehrin | CSE Student & Aspiring AI Engineer</title>
+    <meta
+      name="description"
+      content="Portfolio of Fahrin Kabir Sehrin, Computer Science & Engineering student at Independent University, Bangladesh. Full-stack web, Flutter and AI projects."
+    />
+    <link rel="canonical" href="%SITE_URL%/" />
+    <meta name="author" content="Fahrin Kabir Sehrin" />
+    <meta name="theme-color" content="#7c3aed" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <!-- Share previews (LinkedIn, WhatsApp, Facebook, X). %SITE_URL% comes from site.config.js -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Fahrin Kabir Sehrin" />
+    <meta property="og:url" content="%SITE_URL%/" />
+    <meta property="og:title" content="Fahrin Kabir Sehrin | CSE Student & Aspiring AI Engineer" />
+    <meta
+      property="og:description"
+      content="CSE student at Independent University, Bangladesh. Full-stack web, Flutter and AI projects."
+    />
+    <meta property="og:image" content="%SITE_URL%/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="Fahrin Kabir Sehrin, CSE Student and Aspiring AI Engineer"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Fahrin Kabir Sehrin | CSE Student & Aspiring AI Engineer" />
+    <meta
+      name="twitter:description"
+      content="CSE student at Independent University, Bangladesh. Full-stack web, Flutter and AI projects."
+    />
+    <meta name="twitter:image" content="%SITE_URL%/og-image.png" />
+
+    <script type="application/ld+json">
+      %JSON_LD%
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <script>
+      // Apply the saved or system theme before first paint to avoid a flash.
+      try {
+        const saved = localStorage.getItem('theme');
+        const dark = saved
+          ? saved === 'dark'
+          : window.matchMedia('(prefers-color-scheme: dark)').matches;
+        document.documentElement.classList.toggle('dark', dark);
+      } catch {
+        /* storage unavailable */
+      }
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
