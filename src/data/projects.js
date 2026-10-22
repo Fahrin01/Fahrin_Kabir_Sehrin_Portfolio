@@ -1,0 +1,88 @@
+// Screenshots live in public/projects/ (see the README there).
+// `github` and `demo` are optional: leave them empty and the card hides those buttons.
+export const projects = [
+  {
+    id: 'areafix-bd',
+    title: 'AreaFix BD',
+    tagline: 'Smart Local Problem & Community Analytics Platform',
+    tech: ['React', 'Node.js', 'Express', 'MongoDB', 'Tailwind CSS', 'Leaflet'],
+    highlights: [
+      'Built a full-stack civic-tech app for reporting local issues with photos and map pinning, with role-based verification and resolution workflows.',
+      'Added live analytics (area health scores, trends, heatmaps), real-time notifications and English/Bangla category suggestions.',
+    ],
+    image: '/projects/areafix-bd.webp',
+    github: '',
+    demo: '',
+    featured: true,
+  },
+  {
+    id: 'coursemate-bd',
+    title: 'CourseMate BD',
+    tagline: 'Peer Tutoring & Academic Resource Platform',
+    tech: ['MongoDB', 'Express', 'React', 'Node.js'],
+    highlights: [
+      'Built a MERN app with real-time chat, tutor booking, resource sharing and a student marketplace.',
+      'Added JWT authentication, a role-based admin dashboard, analytics charts and API security hardening.',
+    ],
+    image: '/projects/coursemate-bd.webp',
+    github: '',
+    demo: '',
+    featured: true,
+  },
+  {
+    id: 'bua-com',
+    title: 'BUA.COM',
+    tagline: 'Maid Hiring & Verification System',
+    tech: ['PHP', 'MySQL', 'Bootstrap'],
+    highlights: [
+      'Built a three-role app (Customer, Agent, Admin) for hiring agent-verified household workers, with filtered search, request tracking and reviews.',
+      'Secured with PDO prepared statements, CSRF tokens and role-based access; added admin verification and complaint tools.',
+    ],
+    image: '/projects/bua-com.webp',
+    github: '',
+    demo: '',
+    featured: false,
+  },
+  {
+    id: 'chat-app',
+    title: 'Real-Time Chat App',
+    tagline: '1-to-1 Messaging with Flutter & Firebase',
+    tech: ['Flutter', 'Firebase', 'Provider'],
+    highlights: [
+      'Built a 1-to-1 messaging app with Firebase Authentication, live Firestore sync, user search and recent chats.',
+      'Prevented duplicate chats using deterministic room IDs and Firestore transactions.',
+    ],
+    image: '/projects/chat-app.webp',
+    github: '',
+    demo: '',
+    featured: false,
+  },
+  {
+    id: 'lifedrop',
+    title: 'LifeDrop',
+    tagline: 'Blood Donation Platform',
+    tech: ['PHP', 'MySQL', 'JavaScript', 'Chart.js'],
+    highlights: [
+      'Built a role-based platform linking blood donors and seekers, with emergency requests, donor matching, notifications and messaging.',
+      'Added secure authentication and an admin analytics dashboard with donor verification.',
+    ],
+    image: '/projects/lifedrop.webp',
+    github: '',
+    demo: '',
+    featured: false,
+  },
+  {
+    id: 'bill-calculator',
+    title: 'Bangladesh Electricity Bill Calculator',
+    tagline: 'Bilingual Desktop Bill Estimator',
+    tech: ['Python', 'Tkinter'],
+    highlights: [
+      'Built a bilingual (Bangla/English) desktop app that estimates DESCO and Palli Bidyut/BREB bills using slab, lifeline, demand charge, VAT and rebate rules.',
+      'Separated tariff data, a Decimal-based calculation engine and the GUI; added editable JSON tariffs and provider comparison.',
+    ],
+    image: '/projects/bill-calculator.webp',
+    github: '',
+    demo: '',
+    featured: false,
+  },
+];
