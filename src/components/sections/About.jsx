@@ -1,10 +1,9 @@
-import { GraduationCap, MapPin, Sparkles } from 'lucide-react';
+import { GraduationCap, Sparkles } from 'lucide-react';
 import { profile } from '../../data/index.js';
 import Section from '../ui/Section.jsx';
 import Card from '../ui/Card.jsx';
 
 const facts = [
-  { icon: MapPin, label: 'Based in', value: profile.location },
   { icon: GraduationCap, label: 'Studying', value: `BSc CSE · ${profile.university}` },
   { icon: Sparkles, label: 'Looking for', value: 'Internship in AI or software engineering' },
 ];

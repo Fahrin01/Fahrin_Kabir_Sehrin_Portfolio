@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { AnimatePresence, m, useReducedMotion } from 'framer-motion';
-import { ArrowDown, Download, MapPin } from 'lucide-react';
+import { ArrowDown, Download } from 'lucide-react';
 import { profile } from '../../data/index.js';
 import Button from '../ui/Button.jsx';
 import { GithubIcon, LinkedinIcon } from '../ui/BrandIcons.jsx';
